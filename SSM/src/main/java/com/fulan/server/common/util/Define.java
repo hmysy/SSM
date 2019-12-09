@@ -8,5 +8,6 @@ package com.fulan.server.common.util;
  */
 public final class Define {
 	static int X = 2;  
+	static int Y = 3;
 
 }
