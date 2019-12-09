@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fulan.server.dao.PolicyInformationMapper">
+  <resultMap id="BaseResultMap" type="com.fulan.server.model.PolicyInformation">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="policy_number" jdbcType="VARCHAR" property="policyNumber" />
+    <result column="insured_name" jdbcType="VARCHAR" property="insuredName" />
+    <result column="insured_cert_tpye" jdbcType="VARCHAR" property="insuredCertTpye" />
+    <result column="insured_cert_number" jdbcType="VARCHAR" property="insuredCertNumber" />
+    <result column="insured_phone" jdbcType="VARCHAR" property="insuredPhone" />
+    <result column="insured_address" jdbcType="VARCHAR" property="insuredAddress" />
+    <result column="insured_email" jdbcType="VARCHAR" property="insuredEmail" />
+    <result column="car_frame_number" jdbcType="VARCHAR" property="carFrameNumber" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from policy_information
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.fulan.server.model.PolicyInformation">
+    insert into policy_information (id, policy_number, insured_name, 
+      insured_cert_tpye, insured_cert_number, insured_phone, 
+      insured_address, insured_email, car_frame_number
+      )
+    values (#{id,jdbcType=VARCHAR}, #{policyNumber,jdbcType=VARCHAR}, #{insuredName,jdbcType=VARCHAR}, 
+      #{insuredCertTpye,jdbcType=VARCHAR}, #{insuredCertNumber,jdbcType=VARCHAR}, #{insuredPhone,jdbcType=VARCHAR}, 
+      #{insuredAddress,jdbcType=VARCHAR}, #{insuredEmail,jdbcType=VARCHAR}, #{carFrameNumber,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.fulan.server.model.PolicyInformation">
+    update policy_information
+    set policy_number = #{policyNumber,jdbcType=VARCHAR},
+      insured_name = #{insuredName,jdbcType=VARCHAR},
+      insured_cert_tpye = #{insuredCertTpye,jdbcType=VARCHAR},
+      insured_cert_number = #{insuredCertNumber,jdbcType=VARCHAR},
+      insured_phone = #{insuredPhone,jdbcType=VARCHAR},
+      insured_address = #{insuredAddress,jdbcType=VARCHAR},
+      insured_email = #{insuredEmail,jdbcType=VARCHAR},
+      car_frame_number = #{carFrameNumber,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, policy_number, insured_name, insured_cert_tpye, insured_cert_number, insured_phone, 
+    insured_address, insured_email, car_frame_number
+    from policy_information
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, policy_number, insured_name, insured_cert_tpye, insured_cert_number, insured_phone, 
+    insured_address, insured_email, car_frame_number
+    from policy_information
+  </select>
+</mapper>

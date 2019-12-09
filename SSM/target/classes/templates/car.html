@@ -1,0 +1,85 @@
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+	<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+</head>
+<body>
+	<form id="carandInsured" name="carandInsured">
+		<div id="car">
+			<input type="hidden" name="carId"/>
+			<br>
+			车牌号
+			<input type="text" name="carLicenseNumber"/>
+			<br>
+			车架号
+			<input type="text" name="carFrameNumber"/>
+			<br>
+			发动号
+			<input type="text" name="carEngineNumber" />
+			<br>
+			初登日期
+ 			<input type="text" name="carFristRegistrationDate"/>
+ 			<br>
+ 			价格
+ 			<input type="text" name="carPrice"/>
+ 			<br>
+ 			<input type="button" value="button" id="next"/>
+		</div>
+
+ 		<!-- 隐藏 -->
+ 		<div id="insured" style="display:none;">
+ 			<br>
+ 			<input type="hidden" name="insuredId"/><br>
+			<input type="hidden" name="policyNumber"/><br>
+			投保人姓名
+			<input type="text" name="insuredName"/><br>
+			证件类型(字典)
+			<select name="insuredCertTpye">
+  				<option value ="101">身份证</option>
+  				<option value ="102">护照</option>
+  				<option value="103">企业代码</option>
+  				<option value="104">营业执照</option>
+  				<option value="105">法人证书</option>
+			</select>
+			证件号
+ 			<input type="text" name="insuredCertNumber"/><br>
+ 			手机号
+ 			<input type="text" name="insuredPhone"/><br>
+ 			地址
+ 			<input type="text" name="insuredAddress"/><br>
+ 			邮箱
+ 			<input type="text" name="insuredEmail"/><br>
+ 			
+ 			<input type="button" value="button" id="commit"/>
+ 		</div>
+	</form>
+</body>
+<script>
+
+	$("#next").click(function(){
+		$("#car").hide();
+		$("#insured").show();
+	});
+
+	$("#commit").click(function(){
+		uploadForm();
+	});
+	
+	function uploadForm(){
+		$.ajax({
+				type:'post',
+		    	url:'/fulan/updateCar',
+		    	data:$('#carandInsured').serialize(),
+		    	async: false,
+		    	cache: false,
+		    	success:function(data){
+					alert(data);
+		    	},
+		    	error:function(){
+		    		alert("error");
+		    	}
+			});
+	}
+</script>
+</html>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fulan.server.dao.CarInformationMapper">
+  <resultMap id="BaseResultMap" type="com.fulan.server.model.CarInformation">
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="car_license_number" jdbcType="VARCHAR" property="carLicenseNumber" />
+    <result column="car_frame_number" jdbcType="VARCHAR" property="carFrameNumber" />
+    <result column="car_engine_number" jdbcType="VARCHAR" property="carEngineNumber" />
+    <result column="car_frist_registration_date" jdbcType="DATE" property="carFristRegistrationDate" />
+    <result column="car_price" jdbcType="DECIMAL" property="carPrice" />
+  </resultMap>
+  <insert id="insert" parameterType="com.fulan.server.model.CarInformation">
+    insert into car_information (id, car_license_number, car_frame_number, 
+      car_engine_number, car_frist_registration_date, 
+      car_price)
+    values (#{id,jdbcType=VARCHAR}, #{carLicenseNumber,jdbcType=VARCHAR}, #{carFrameNumber,jdbcType=VARCHAR}, 
+      #{carEngineNumber,jdbcType=VARCHAR}, #{carFristRegistrationDate,jdbcType=DATE}, 
+      #{carPrice,jdbcType=DECIMAL})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, car_license_number, car_frame_number, car_engine_number, car_frist_registration_date, 
+    car_price
+    from car_information
+  </select>
+</mapper>
