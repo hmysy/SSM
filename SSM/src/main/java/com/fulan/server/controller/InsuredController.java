@@ -69,5 +69,6 @@ public class InsuredController {
 	public Map testM(@RequestBody Map m){
 		logger.info(m.toString());
 		return m;
+		
 	}
 }
